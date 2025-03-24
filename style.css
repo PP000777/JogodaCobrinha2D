@@ -1,0 +1,11 @@
+body{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background-color: blanchedalmond;
+    margin-top: 100px;
+}
+canvas{
+    background-color: azure;
+    border-radius: 10px;
+}
