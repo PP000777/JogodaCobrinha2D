@@ -1,6 +1,7 @@
 const canvas = document.getElementById('jogoCanvas')
 const ctx = canvas.getContext('2d')
-
+let rodando = true
+let gameOverr = false
 
 const teclasPressionadas = {
     KeyW: false,
@@ -72,17 +73,37 @@ class Comida extends Entidade {
     }
 }
 
+function gameOver() {
+    if(gameOverr = true){
+    alert('Game Over!')
+    location.reload()
+}
+}
+
+function verificarcolisaoParede(){
+    if (cobra.x < 0 || cobra.x > canvas.width - cobra.largura || cobra.y < 0 || cobra.y > canvas.height - cobra.altura) {
+        gameOver()
+        rodando = false
+        gameOverr = true
+    }
+}
+
+
 const cobra = new Cobra(100, 200, 20, 20, 'green')
 const comida = new Comida('red')
 
 
 function loop() {
+    if(!rodando){
+        return;
+    }
+
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     cobra.desenhar(ctx, cobra.cor)
     cobra.atualizar()
     comida.desenhar(ctx, comida.cor)
     cobra.verificarColisao(comida)
-    
+    verificarcolisaoParede()
     
     requestAnimationFrame(loop)
 }
