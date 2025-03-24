@@ -21,22 +21,24 @@ document.addEventListener('keydown', (e) => {
 
 
 class Entidade {
-    constructor(x, y, largura, altura) {
+    constructor(x, y, largura, altura,cor) {
         this.x = x
         this.y = y
         this.largura = largura
         this.altura = altura
+        this.cor = cor
     }
     desenhar() {
-        ctx.fillStyle = 'black'
+        ctx.fillStyle = this.cor
         ctx.fillRect(this.x, this.y, this.largura, this.altura)
     }
 }
 
 
 class Cobra extends Entidade {
-    constructor(x, y, largura, altura) {
-        super(x, y, largura, altura)
+    #cor
+    constructor(x, y, largura, altura,cor) {
+        super(x, y, largura, altura,cor)
     }
     atualizar() {
         if (teclasPressionadas.KeyW) {
@@ -65,22 +67,23 @@ class Cobra extends Entidade {
     }
 }
 class Comida extends Entidade {
-    constructor() {
-        super(Math.random() * canvas.width - 10, Math.random() * canvas.height - 10, 20, 20)
+    constructor(cor) {
+        super(Math.random() * canvas.width - 10, Math.random() * canvas.height - 10, 20, 20, cor)
     }
 }
 
-
-const cobra = new Cobra(100, 200, 20, 20)
-const comida = new Comida()
+const cobra = new Cobra(100, 200, 20, 20, 'green')
+const comida = new Comida('red')
 
 
 function loop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    cobra.desenhar()
+    cobra.desenhar(ctx, cobra.cor)
     cobra.atualizar()
-    comida.desenhar()
+    comida.desenhar(ctx, comida.cor)
     cobra.verificarColisao(comida)
+    
+    
     requestAnimationFrame(loop)
 }
 loop()
