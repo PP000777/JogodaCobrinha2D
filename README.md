@@ -1,4 +1,4 @@
-# Jogo da Cobrinha 🐍
+# Jogo da Cobrinha 
 
 Um jogo simples da cobrinha feito com JavaScript.
 
@@ -23,3 +23,8 @@ Basta abrir o arquivo `index.html` no seu navegador. Não precisa instalar nada!
 
 ![Tela inicial do jogo](screenshot.png)
 *Jogo da cobrinha em ação*
+
+## Observação
+
+O jogo ainda não está completo. A funcionalidade de fazer a cobrinha crescer ao comer a comida ainda não foi implementada.
+(Não consigo pensar em alguma forma com que faça que a cobra aumente de tamanho)
